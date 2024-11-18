@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .board {
+        margin: 30px auto;
+        background-color: aquamarine;
+        position: relative;
+      }
+
+      .snake {
+        background-color: blue;
+        border-radius: 10px;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="board" id="board">
+      <!--Generated-->
+    </div>
+    <div style="text-align: center">
+      <button onclick="changeDirection('up');">Up</button>
+      <button onclick="changeDirection('down');">Down</button>
+      <button onclick="changeDirection('left');">Left</button>
+      <button onclick="changeDirection('right');">Right</button>
+    </div>
+
+    <script>
+      let headTop = 10;
+      let headLeft = 12;
+      let directiom = "up";
+
+      const config = {
+        size: 20,
+        width: 30,
+        heigt: 20,
+      };
+
+      const boardEl = document.getElementById("board");
+      boardEl.style.width = config.width * config.size + "px";
+      boardEl.style.height = config.height * config.size + "px";
+
+      function goUp() {
+        headTop = headTop - 1;
+        if (headTop < 0) {
+          headTop = config.height - 1;
+        }
+        render();
+      }
+
+      function goDown() {
+        headTop = headTop + 1;
+        if (headTop === config.height) {
+          headTop = 0;
+        }
+        render();
+      }
+
+      function changeDirection(newDirection) {
+        if (direction === "up" || direction === "down") {
+          if (newDirection === "right" || newDirection === "left") {
+            direction = newDirection;
+          }
+        } else if (direction === "right" || direction === "left") {
+          if (newDirection === "up" || newDirection === "down") {
+            direction = newDirection;
+          }
+        }
+      }
+
+      function goRight() {
+        headLeft = headLeft + 1;
+        render();
+      }
+
+      setInterval(gameLoop, 300);
+
+      function gameLoop() {
+        switch (direction) {
+          case "up":
+            goUp();
+            break;
+          case "right":
+            goRight();
+            break;
+          case "down":
+            goDown();
+            break;
+        }
+      }
+
+      function render() {
+        const snakeHtml = ` ,div class=" snake" style="top;${headTop}px; left: ${headLeft}px"></div>`;
+        const boardEl = document.getElementById("board");
+        boardEl.innerHTmL = snakeHtml;
+      }
+
+      render();
+    </script>
+  </body>
+</html>
