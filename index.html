@@ -91,9 +91,12 @@
       }
 
       function render() {
-        const snakeHtml = ` ,div class=" snake" style="top;${headTop}px; left: ${headLeft}px"></div>`;
-        const boardEl = document.getElementById("board");
-        boardEl.innerHTmL = snakeHtml;
+        const snakeHtml = `
+        <div class="snake" style="width;${1 * config.sixe}px; heigth:${
+          1 * config.size
+        }px;top: ${headTop * config.size}pz; left:${headLeft * config.size}px"
+        `;
+        boardEl.innerHTML = snakeHtml;
       }
 
       render();
