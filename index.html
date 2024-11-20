@@ -99,8 +99,25 @@
 
       function startGame() {
         if (!IntervalId) {
-          IntervalId = setInterval(gameLoop, 300);
+          IntervalId = setInterval(gameLoop, 200);
         }
+      }
+      function generateFood() {
+        const foodX = math.random() * 10;
+        console.log({ foodX });
+        const foodY = "";
+      }
+
+      generateFood();
+      function reset() {
+        headTop = 5;
+        headLeft = 5;
+        direction = "right";
+        tails = [
+          { x: 2, y: 5 },
+          { x: 3, y: 5 },
+          { x: 4, y: 5 },
+        ];
       }
       function reset() {
         headTop = 10;
@@ -183,12 +200,6 @@
         `;
         const snakeHtml = `${tailsHtml}`;
         boardEl.innerHTML = snakeHtml;
-        //     <div style="text-align: center">
-        //   <button onclick="changeDirection('up');">Up</button>
-        //   <button onclick="changeDirection('down');">Down</button>
-        //   <button onclick="changeDirection('left');">Left</button>
-        //   <button onclick="changeDirection('right');">Right</button>
-        // </div>
       }
     </script>
   </body>
