@@ -100,10 +100,13 @@
       function startGame() {
         if (!IntervalId) {
           IntervalId = setInterval(gameLoop, 200);
+          generateFood();
         }
       }
       function generateFood() {
-        const foodX = math.random() * 10;
+        foodX = Math.floor(Math.random() * config.width);
+        foodY = Math.floor(Math.random() * config.height);
+
         console.log({ foodX });
         const foodY = "";
       }
@@ -143,8 +146,17 @@
       }
 
       function gameLoop() {
-        tails.push({ x: headLeft, y: headTop });
+        tails.push({ x: headX, y: headY });
         tails.shift();
+        if (headX === foodX && headY === foodY) {
+          tails.push({ x: headX, y: headY });
+          generateFood();
+        }
+        for (let i = 0; i < tails.length; i++) {
+          if (headX === tails[i].x && headY === tails[i].y) {
+            alert("Game over");
+          }
+        }
         switch (direction) {
           case "up":
             goUp();
